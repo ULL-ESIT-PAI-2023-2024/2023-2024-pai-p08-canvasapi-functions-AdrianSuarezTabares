@@ -16,7 +16,7 @@
   "keywords": [
     "PAI"
   ],
-  "author": "F. de Sande <fsande@ull.es>",
+  "author": "Adrián Suárez <alu0101495439@ull.edu.es>",
   "license": "MIT",
   "devDependencies": {
     "@exercism/babel-preset-typescript": "^0.1.0",

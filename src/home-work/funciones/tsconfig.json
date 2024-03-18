@@ -21,7 +21,7 @@
   },
   "include": [
     "./*.ts"
- ],
+, "app/view.ts", "app/sqrt-function.ts", "app/sin-function.ts", "app/math-function.ts", "app/main.ts", "app/cos-function.ts", "app/axis.ts" ],
   "exclude": [
         "node_modules",
         "build",

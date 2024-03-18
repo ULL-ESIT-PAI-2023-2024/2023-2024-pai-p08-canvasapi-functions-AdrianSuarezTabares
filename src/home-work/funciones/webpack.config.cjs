@@ -3,7 +3,7 @@ const path = require("path");
 
 module.exports = {
   mode: "development", // Add the development mode
-  entry: "./main.ts",
+  entry: "./app/main.ts",
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "dist"),
