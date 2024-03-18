@@ -6,25 +6,25 @@
  *
  * @author Adrián Suárez Tabares
  * @since Mar 10 2024
- * @desc Implemetations for the sin function
+ * @desc Implemetations for the cosine function
  *
  */
 
 import { MathFunction } from './math-function';
 
 /**
- * @class SinFunction
- * @desc Class that represents the sin function
+ * @class TanFunction
+ * @desc Class that represents the tan function
  */
-export class SinFunction extends MathFunction {
+export class SqrtFunction extends MathFunction {
 
   /**
-   * @desc Method that evaluates the sin function
+   * @desc Method that evaluates the tan function
    * @param parameter - The parameter to evaluate the function
    * @returns The result of the evaluation
    */
   public evaluate(parameter: number): number | null {
-    return Math.sin(parameter);
+    if (parameter < 0) return null;
+    return Math.sqrt(parameter);
   }
-
 }

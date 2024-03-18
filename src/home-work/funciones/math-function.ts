@@ -14,83 +14,50 @@
  * @interface MathFunction
  * @desc Interface that represents a math function
  */
-export interface MathFunction {
-  evaluate(parameter: number): number;
-  draw(canvas: HTMLCanvasElement, canvasWidth: number, canvasHeight: number, scale: number): void;
-}
-
-/**
- * @class CosFunction
- * @desc Class that represents the cos function
- */
-export class CosFunction implements MathFunction {
-
+export abstract class MathFunction {
+  
+  abstract evaluate(parameter: number): number | null ;
+  
   /**
-   * @desc Method that evaluates the cos function
-   * @param parameter - The parameter to evaluate the function
-   * @returns The result of the evaluation
-   */
-  public evaluate(parameter: number): number {
-    return Math.cos(parameter);
-  }
-
-  /**
-   * @desc Method that draws the cos function in the canvas
+   * @desc Method that draws the specific function in the canvas
    * @param canvas - The canvas where the figure is going to be drawn
    * @returns void
    */
-  public draw(canvas: HTMLCanvasElement, canvasWidth: number, canvasHeight: number): void {
+  public draw(canvas: HTMLCanvasElement, scale: number, color: string): void {
     const context: CanvasRenderingContext2D | null = canvas.getContext('2d');
     if (!context) {
       console.error('Canvas 2D context is not supported.');
       return;
     }
-    context.strokeStyle = 'black';
-    context.lineWidth = 20;
-
+    context.strokeStyle = color;
+    context.lineWidth = 2;
+   
+    const CENTRE_X = canvas.width / 2;
+    const CENTRE_Y = canvas.height / 2;
     context.beginPath();
-    for (let x = 0; x < canvas.width; x++) {
-      const y = Math.cos(x);
-      context.lineTo(x, y);
+    for (let canvasX = 0; canvasX < canvas.width; canvasX++) {
+      const parameterX = (canvasX - CENTRE_X ) / scale; // Modifies the value of the parameter to be in a 2D plane
+      let canvasY: number | null = (this.evaluate(parameterX));
+      if (canvasY === null) continue;
+      
+      canvasY = canvasY * scale + CENTRE_Y;
+      canvasY = this.invertYCoordinte(canvasY, canvas.height);
+      context.lineTo(canvasX, canvasY);
     }
     context.stroke();
   }
-}
-
-/**
- * @class TanFunction
- * @desc Class that represents the tan function
- */
-export class SqrtFunction implements MathFunction {
 
   /**
-   * @desc Method that evaluates the tan function
-   * @param parameter - The parameter to evaluate the function
-   * @returns The result of the evaluation
+   * @desc Due to the canvas coordinate system, the Y coordinate needs to be inverted in order to draw the function correctly
+   * @param coordinateY - The Y coordinate to be inverted
+   * @param canvasHeight - The height of the canvas
+   * @returns The inverted Y coordinate, posotive if the original was negative and viceversa
    */
-  public evaluate(parameter: number): number {
-    return Math.sqrt(parameter);
-  }
-
-  /**
-   * @desc Method that draws the tan function in the canvas
-   * @param canvas - The canvas where the figure is going to be drawn
-   * @returns void
-   */
-  public draw(canvas: HTMLCanvasElement, canvasWidth: number, canvasHeight: number): void {
-    const context: CanvasRenderingContext2D | null = canvas.getContext('2d');
-    if (!context) {
-      console.error('Canvas 2D context is not supported.');
-      return;
+  private invertYCoordinte(coordinateY: number, canvasHeight: number): number {
+    if (coordinateY < canvasHeight / 2) {
+      return canvasHeight / 2 + (canvasHeight / 2 - coordinateY);
     }
-    context.strokeStyle = 'black';
-    context.lineWidth = 20;
-
-    context.beginPath();
-    for (let x = 0; x < canvas.width; x++) {
-      const y = Math.sqrt(x);
-      context.lineTo(x, y);
-    }
-    context.stroke();
+    return canvasHeight / 2 - (coordinateY - canvasHeight / 2);
   }
 }
+

@@ -11,6 +11,7 @@
  */
 
 import { MathFunction } from './math-function';
+import { Axis } from './axis';
 
 /**
  * @class View
@@ -46,8 +47,17 @@ export class View {
    * @desc Method that draws the figures in the canvas
    * @returns void
    */
-  public displayFunction(mathFunction: MathFunction): void {
-    mathFunction.draw(this.canvas, this.canvasWidth, this.canvasHeight, this.scale);
+  public displayFunction(mathFunction: MathFunction, color: string = 'black'): void {
+    mathFunction.draw(this.canvas, this.scale, color);
+  }
+
+  /**
+   * @desc Method that draws the axis in the canvas
+   * @returns void
+   */
+  public displayAxis(): void {
+    const axis = new Axis(this.scale);
+    axis.drawAxis(this.canvas, this.canvasWidth, this.canvasHeight);
   }
 
 }

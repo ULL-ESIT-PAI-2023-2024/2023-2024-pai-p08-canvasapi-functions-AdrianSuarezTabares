@@ -13,6 +13,8 @@
 import { View } from './view';
 import { MathFunction } from './math-function';
 import { SinFunction } from './sin-function';
+import { CosFunction } from './cos-function';
+import { SqrtFunction } from './sqrt-function';
 
 /**
  * @desc Main function of the project
@@ -23,10 +25,14 @@ function main() {
   const canvasHeight: number = 800;
   const canvasWidth: number = 800;
   const view: View = new View('FunctionCanvas', canvasWidth, canvasHeight, scale);
+  view.displayAxis();
   
   const sinFunction: MathFunction = new SinFunction();
   view.displayFunction(sinFunction);
-
+  const cosFunction: MathFunction = new CosFunction();
+  view.displayFunction(cosFunction);
+  const sqrtFunction: MathFunction = new SqrtFunction();
+  view.displayFunction(sqrtFunction);
 }
 
 main();
