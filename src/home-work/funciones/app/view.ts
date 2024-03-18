@@ -25,7 +25,7 @@ export class View {
    * @constructor
    * @param canvas - The canvas where the figures are going to be drawn
    */
-  constructor(canvasName: string, private canvasWidth: number, private canvasHeight: number, private scale: number = 50) {
+  constructor(canvasName: string, canvasWidth: number, canvasHeight: number, private canvasScale: number = 50) {
     this.canvas = document.getElementById(canvasName) as HTMLCanvasElement;
     const context: CanvasRenderingContext2D | null = this.canvas.getContext('2d');
     this.canvas.style.backgroundColor = 'white';
@@ -33,14 +33,13 @@ export class View {
       console.error('Canvas 2D context is not supported.');
       return;
     }
-    this.canvas.width = this.canvasWidth
-    this.canvas.height = this.canvasHeight
+    this.canvas.width = canvasWidth
+    this.canvas.height = canvasHeight
     
     context.strokeStyle = 'black';
     context.lineWidth = 20;
   
     context.strokeRect(0, 0, this.canvas.width, this.canvas.height);
-    
   }
   
   /**
@@ -48,7 +47,7 @@ export class View {
    * @returns void
    */
   public displayFunction(mathFunction: MathFunction, color: string = 'black'): void {
-    mathFunction.draw(this.canvas, this.scale, color);
+    mathFunction.draw(this.canvas, this.canvasScale, color);
   }
 
   /**
@@ -56,8 +55,8 @@ export class View {
    * @returns void
    */
   public displayAxis(): void {
-    const axis = new Axis(this.scale);
-    axis.drawAxis(this.canvas, this.canvasWidth, this.canvasHeight);
+    const axis = new Axis(this.canvasScale);
+    axis.drawAxis(this.canvas, this.canvas.width, this.canvas.height);
   }
 
 }

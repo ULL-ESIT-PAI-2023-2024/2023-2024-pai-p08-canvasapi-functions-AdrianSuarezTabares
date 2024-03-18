@@ -16,7 +16,7 @@ import { MathFunction } from './math-function';
  * @class TanFunction
  * @desc Class that represents the tan function
  */
-export class SqrtFunction extends MathFunction {
+export class SquareRootFunction extends MathFunction {
 
   /**
    * @desc Method that evaluates the tan function

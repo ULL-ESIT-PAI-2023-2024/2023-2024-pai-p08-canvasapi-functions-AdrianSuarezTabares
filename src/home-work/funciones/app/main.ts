@@ -14,7 +14,8 @@ import { View } from './view';
 import { MathFunction } from './math-function';
 import { SinFunction } from './sin-function';
 import { CosFunction } from './cos-function';
-import { SqrtFunction } from './sqrt-function';
+import { SquareRootFunction } from './square-root-function';
+import { QuadraticFunction } from './quadratic-function';
 
 /**
  * @desc Main function of the project
@@ -28,11 +29,15 @@ function main() {
   view.displayAxis();
   
   const sinFunction: MathFunction = new SinFunction();
-  view.displayFunction(sinFunction);
+  view.displayFunction(sinFunction, 'blue');
   const cosFunction: MathFunction = new CosFunction();
   view.displayFunction(cosFunction);
-  const sqrtFunction: MathFunction = new SqrtFunction();
+  const sqrtFunction: MathFunction = new SquareRootFunction();
   view.displayFunction(sqrtFunction);
+  const quadraticFunction: MathFunction = new QuadraticFunction(1, 0, -1);
+  view.displayFunction(quadraticFunction, 'red');
+
+  
 }
 
 main();

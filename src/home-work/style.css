@@ -1,0 +1,21 @@
+body {
+  background-color: #ffffff; /* Fondo blanco */
+  font-family: Arial, sans-serif; /* Tipo de fuente */
+}
+
+.container {
+  width: 100%;
+  text-align: center; /* Texto centrado */
+  margin-top: 50px; /* Espacio superior */
+}
+
+button {
+  background-color: #000000; /* Botones negros */
+  color: #ffffff; /* Letra blanca */
+  padding: 10px 20px; /* Espaciado interior */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambio de cursor al pasar el mouse */
+  font-size: 16px; /* Tamaño de fuente */
+  margin: 10px; /* Margen exterior */
+}
