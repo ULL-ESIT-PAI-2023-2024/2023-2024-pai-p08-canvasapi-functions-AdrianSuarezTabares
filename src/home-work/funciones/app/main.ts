@@ -16,6 +16,7 @@ import { SinFunction } from './sin-function';
 import { CosFunction } from './cos-function';
 import { SquareRootFunction } from './square-root-function';
 import { QuadraticFunction } from './quadratic-function';
+import { SinAproximation } from './sin-aproximation';
 
 /**
  * @desc Main function of the project
@@ -23,21 +24,21 @@ import { QuadraticFunction } from './quadratic-function';
  */
 function main() {
   const scale = 50;
-  const canvasHeight: number = 800;
-  const canvasWidth: number = 800;
+  const canvasHeight: number = 1000;
+  const canvasWidth: number = 2100;
   const view: View = new View('FunctionCanvas', canvasWidth, canvasHeight, scale);
-  view.displayAxis();
-  
-  const sinFunction: MathFunction = new SinFunction();
-  view.displayFunction(sinFunction, 'blue');
-  const cosFunction: MathFunction = new CosFunction();
-  view.displayFunction(cosFunction);
-  const sqrtFunction: MathFunction = new SquareRootFunction();
-  view.displayFunction(sqrtFunction);
-  const quadraticFunction: MathFunction = new QuadraticFunction(1, 0, -1);
-  view.displayFunction(quadraticFunction, 'red');
 
   
+  const sinFunction: MathFunction = new SinFunction();
+  view.displayFunction(sinFunction, 'green');
+  const cosFunction: MathFunction = new CosFunction();
+//  view.displayFunction(cosFunction);
+  const sqrtFunction: MathFunction = new SquareRootFunction();
+//  view.displayFunction(sqrtFunction);
+  const quadraticFunction: MathFunction = new QuadraticFunction(1, 0, -1);
+//  view.displayFunction(quadraticFunction, 'red');
+  const sinAproximation: MathFunction = new SinAproximation();
+  view.displayFunction(sinAproximation, 'blue');
 }
 
 main();

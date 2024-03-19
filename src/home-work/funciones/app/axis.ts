@@ -45,15 +45,18 @@ export class Axis {
     context.lineTo(canvasWidth / 2, canvasHeight);
     context.moveTo(0, canvasHeight / 2);
     context.lineTo(canvasWidth, canvasHeight / 2);
-        
+    
     //Draw the ticks
-    for (let x = 0; x < canvasWidth; x += this.scale) {
-      context.moveTo(x, canvasHeight / 2 - 5);
-      context.lineTo(x, canvasHeight / 2 + 5);
+    const TICK_SIZE = 5;  
+    for (let posX = 0; posX < canvasWidth; posX += this.scale) {
+      context.moveTo(posX, canvasHeight / 2 - TICK_SIZE);
+      context.lineTo(posX, canvasHeight / 2 + TICK_SIZE);
+      context.fillText(((posX - canvasWidth / 2) / this.scale).toString(), posX, canvasHeight / 2 + 15);
     }
-    for (let y = 0; y < canvasHeight; y += this.scale) {
-      context.moveTo(canvasWidth / 2 - 5, y);
-      context.lineTo(canvasWidth / 2 + 5, y);
+    for (let posY = 0; posY < canvasHeight; posY += this.scale) {
+      context.moveTo(canvasWidth / 2 - TICK_SIZE, posY);
+      context.lineTo(canvasWidth / 2 + TICK_SIZE, posY);
+      context.fillText((-(posY - canvasHeight / 2) / this.scale).toString(), canvasWidth / 2 - 15, posY);
     }
     context.stroke();
   }

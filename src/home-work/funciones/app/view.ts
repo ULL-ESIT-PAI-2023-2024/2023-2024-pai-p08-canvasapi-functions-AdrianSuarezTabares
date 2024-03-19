@@ -12,13 +12,13 @@
 
 import { MathFunction } from './math-function';
 import { Axis } from './axis';
+import { Grid } from './grid';
 
 /**
  * @class View
  * @desc Class that represents the view of the application
  */
 export class View {
-
   private canvas: HTMLCanvasElement;
 
   /**
@@ -40,6 +40,9 @@ export class View {
     context.lineWidth = 20;
   
     context.strokeRect(0, 0, this.canvas.width, this.canvas.height);
+
+    this.displayAxis();
+    this.displayGrid();
   }
   
   /**
@@ -54,9 +57,18 @@ export class View {
    * @desc Method that draws the axis in the canvas
    * @returns void
    */
-  public displayAxis(): void {
+  private displayAxis(): void {
     const axis = new Axis(this.canvasScale);
     axis.drawAxis(this.canvas, this.canvas.width, this.canvas.height);
+  }
+
+  /**
+   * @desc Method that draws the grid in the canvas
+   * @returns void
+   */
+  private displayGrid(): void {
+    const grid = new Grid(this.canvasScale);
+    grid.drawGrid(this.canvas, this.canvas.width, this.canvas.height);
   }
 
 }
